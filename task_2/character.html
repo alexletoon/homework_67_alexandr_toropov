@@ -21,7 +21,15 @@
         console.log(param);
         $(document).ready(function(){
             $.get(`https://www.breakingbadapi.com/api/characters/${param}`, function(data){
-            let characterAge = new Date(year,month,day)
+            let currentDate = new Date()
+            if(data[0].birthday=='Unknown'){
+                var characterAge = 'Неизвестен';
+            }
+            else{
+            birthDate = new Date(data[0].birthday);
+            characterAge = currentDate.getFullYear() - birthDate.getFullYear();
+            }
+
             let characterInfo = `<div class="card m-3" style="max-width: 1080px;">
                                     <div class="row g-0">
                                         <div class="col-md-4">
@@ -34,7 +42,9 @@
                                                 <p class="card-text">Возраст: ${characterAge}</p>
                                                 <p class="card-text">Статус: ${data[0].status}</p>
                                                 <p class="card-text">Эпизоды: ${data[0].appearance}</p>
+                                                <p class="card-text">Прозвище: ${data[0].nickname}</p>
                                                 <p class="card-text">Исполнитель роли: ${data[0].portrayed}</p>
+                                                <p class="card-text">Категория: ${data[0].category}</p>
                                             </div>
                                         </div>
                                     </div>
