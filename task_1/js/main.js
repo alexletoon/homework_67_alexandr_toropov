@@ -7,12 +7,21 @@ let addElement = function(){
     let closeButton = document.createElement('button');
     closeButton.innerText = 'Закрыть';
     newDiv.append(closeButton);
+    newDiv.style.backgroundColor = 'lightgreen';
+    newDiv.style.height = '40px';
+    newDiv.style.width = '300px';
+    newDiv.style.padding = '15px';
+    newDiv.style.margin = '25px';
     divParent.append(newDiv);
     let closeDiv = function(){
-        divParent.removeChild(newDiv)
+        divParent.removeChild(newDiv);
     }
-    closeTimer = setTimeout(closeDiv, 5000)
-    closeButton.addEventListener('click', closeDiv, clearTimeout(closeTimer));
+    closeTimer = setTimeout(closeDiv, 5000);
+    closeButton.addEventListener('click', closeDiv)
+    closeButton.addEventListener('click', () => {
+        clearTimeout(closeTimer);
+        
+    });
 }
 
 addButton.addEventListener('click', addElement);
